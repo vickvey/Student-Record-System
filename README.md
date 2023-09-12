@@ -2,7 +2,8 @@
 
 This project is a simple student information storage database implemented in C. It allows users to add, view, and delete student records, as well as view a list of all students. The database uses a dynamic array to store student information.
 
-## List of various implementation which i have done :
+## Keypoints :
+- This project is made to enhance implementation skills in Core C programming language using many features of C language.
 - I have implemented dynamic array of structures of a particular datatype. (because C doesn't have stl features like C++ vector)
 - I have used module system to better manage the codebase of my project and divided things into various headerfile for better readability and scalability.
 - The code given in each module is written in ANSI C11 but it also works fine in older versions of C.
