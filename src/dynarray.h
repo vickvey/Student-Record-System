@@ -26,8 +26,9 @@ struct vector {
   const Student* (*get_info) (const vector *, int);
 };
 
-void VECTOR_INIT(vector *_vector);
-void VECTOR_DEST(vector *_vector);
+void VECTOR_INIT(vector **vect_ref);
+void VECTOR_CLEAR(vector **vect_ref);
+void VECTOR_DEST(vector **vect_ref);
 
 void push_back (vector *_vector, const Student *_student);
 void pop_back (vector *_vector);

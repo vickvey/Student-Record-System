@@ -7,36 +7,57 @@
 
 static const int INIT_CAPACITY = 4;
 
-void VECTOR_INIT(struct vector *_vector) {
-  if(_vector == NULL) {
-    puts("\nError: Invalid operation - vector pointer is NULL.\n");
-    return;    
-  } _vector->capacity = INIT_CAPACITY;
+static void VECTOR_SETUP(vector **vect_ref) {
+  (*vect_ref)->capacity = INIT_CAPACITY;
   // memory allocation
-  _vector->array = (Student*) malloc(INIT_CAPACITY * sizeof(Student));
-  if (_vector->array == NULL) {
+  (*vect_ref)->array = (Student*) calloc(INIT_CAPACITY, sizeof(Student));
+  if ((*vect_ref)->array == NULL) {
     puts("\nError!! Memory allocation failed.\n");
     exit(1);
   }
-  _vector->currSize = 0;
-
-  // link the function pointers
-  _vector->push_back = &push_back;
-  _vector->pop_back = &pop_back;
-  _vector->size = &size;
-  _vector->resize = &resize;
-  _vector->front = &front;
-  _vector->get_info = &get_info;
+  (*vect_ref)->currSize = 0;
 }
 
-void VECTOR_DEST(vector *_vector) {
-  if(_vector == NULL) {
-    puts("\nError: Invalid operation - vector pointer is NULL.\n");
+void VECTOR_INIT(vector **vect_ref) {
+  if(vect_ref == NULL) {
+    puts("\nError: Invalid operation - pointer to pointer to vector is NULL.\n");
     return;    
   }
+  if(*vect_ref != NULL) {
+    puts("\nError: vector already initialised!!\n");
+  }
+  *vect_ref = (vector *)calloc(1, sizeof(vector));
+  if(*vect_ref == NULL) {
+    puts("\nError: vector memory allocation failed.\n");
+    exit(1);
+  }
+  VECTOR_SETUP(vect_ref);
+
+  /* link the function pointers
+  (*vect_ref)->push_back = &push_back;
+  (*vect_ref)->pop_back = &pop_back;
+  (*vect_ref)->size = &size;
+  (*vect_ref)->resize = &resize;
+  (*vect_ref)->front = &front;
+  (*vect_ref)->get_info = &get_info;
+  */
+}
+
+void VECTOR_CLEAR(vector **vect_ref) {
+  // code here
+
+}
+
+void VECTOR_DEST(vector **vect_ref) {
+  if(vect_ref == NULL) {
+    puts("\nError: Invalid operation - pointer to pointer to vector is NULL.\n");
+    return;    
+  }
+  // clearing the vector
+  VECTOR_CLEAR(vect_ref);
+
   // deallocating the memory
-  free(_vector->array);
-  _vector->array = NULL;
+  free((*vect_ref));
 }
 
 void push_back (vector *_vector, const Student *_student) {
