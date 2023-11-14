@@ -1,7 +1,8 @@
 
-#include "studentdata.h" 
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "studentdata.h" 
 
 void getting_dataIO_ready(dataIO *_dataIO, const char *_filename) {
   strcpy(_dataIO->filename, _filename);

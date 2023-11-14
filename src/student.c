@@ -1,8 +1,9 @@
 
 //-----------------------------------------------------------------
+#include <stdio.h>
+#include <string.h>
 #include "student.h"
 #include "constants.h"
-#include <string.h>
 
 void setDept(char strings[NUM_OF_DEPTS][DEPT_STRING]) {
   strcpy(strings[0], "CSE");
