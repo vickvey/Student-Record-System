@@ -5,7 +5,7 @@
 #include "student.h"
 #include "constants.h"
 
-void setDept(char strings[NUM_OF_DEPTS][DEPT_STRING]) {
+void setDept(char strings[NUM_OF_DEPTS][LEN_DEPT_STRING]) {
   strcpy(strings[0], "CSE");
   strcpy(strings[1], "ECE");
   strcpy(strings[2], "EE");
@@ -15,12 +15,12 @@ void setDept(char strings[NUM_OF_DEPTS][DEPT_STRING]) {
 }
 
 const char *dept_to_string (Dept *_dept, 
-  char strings[NUM_OF_DEPTS][DEPT_STRING]) {
+	char strings[NUM_OF_DEPTS][LEN_DEPT_STRING]) {
   return strings[*_dept];
 }
 
-void takeDeptInput (Dept *_dept, 
-  char strings[NUM_OF_DEPTS][DEPT_STRING]) {
+void takeDeptInput 
+	(Dept *_dept, char strings[NUM_OF_DEPTS][LEN_DEPT_STRING]) {
   int _input = -1;
   while(1) {
     for(int i = 0; i<NUM_OF_DEPTS; i++) {

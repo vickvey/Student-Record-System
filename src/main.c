@@ -4,11 +4,8 @@
 #include <string.h>
 #include "constants.h"
 #include "student.h"
-#include "student.c"
 #include "dynarray.h"
-#include "dynarray.c"
 #include "studentdata.h"
-#include "studentdata.c"
 
 // setting the department name strings globally
 char strings[6][10];

@@ -1,0 +1,1 @@
+/usr/bin/cc CMakeFiles/target_exec.dir/src/main.c.o CMakeFiles/target_exec.dir/src/dynarray.c.o CMakeFiles/target_exec.dir/src/student.c.o CMakeFiles/target_exec.dir/src/studentdata.c.o CMakeFiles/target_exec.dir/src/constants.c.o -o target_exec 

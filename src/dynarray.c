@@ -2,9 +2,10 @@
 //----------------------------------------------------------------------------------------------
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 #include "dynarray.h"
 
-const int INIT_CAPACITY = 4;
+static const int INIT_CAPACITY = 4;
 
 void VECTOR_INIT(struct vector *_vector) {
   if(_vector == NULL) {
@@ -50,7 +51,6 @@ void push_back (vector *_vector, const Student *_student) {
   _vector->currSize++;
 } 
 
-
 void pop_back (vector *_vector) {
   if(_vector == NULL) {
     puts("\nError: Invalid operation - vector pointer is NULL.\n");
@@ -72,17 +72,28 @@ int size (const vector *_vector) {
   return _vector->currSize; 
 }
 
-void resize (vector *_vector) {
-  if(_vector == NULL) {
+void resize(vector *_vector) {
+  if (_vector == NULL) {
     puts("\nError: Cannot reallocate the pointer because it points at NULL.\n");
     return;
   }
-  // doubling the vector capacity
+
+  // Check for capacity overflow
+  if (_vector->capacity > (int)SIZE_MAX / 2) {
+    // Handle overflow with a meaningful message
+    puts("\nError: Capacity overflow during resize. Unable to double the capacity.\n");
+    exit(1);
+  }
+
+  // Double the vector capacity
   _vector->capacity *= 2;
-  _vector->array = (Student*) 
-    realloc(_vector->array, _vector->capacity * sizeof(Student));
-  if(_vector->array == NULL) {
-    puts("\nError!! Memory reallocation failed.\n");
+
+  // Resize the array
+  _vector->array = (Student*)realloc(_vector->array, _vector->capacity * sizeof(Student));
+
+  // Check for memory allocation failure
+  if (_vector->array == NULL) {
+    puts("\nError: Memory reallocation failed.\n");
     exit(1);
   }
 }
